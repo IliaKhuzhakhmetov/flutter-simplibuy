@@ -56,13 +56,13 @@ Once the necessary classes have been generated, you can run the app using the fo
 ```flutter run```
 
 # Future Road Map
-As SimpliBuy continues to evolve, there are several features and improvements that we plan to add to the app in the coming months. Some of the items on my roadmap include:
+As SimpliBuy continues to evolve, there are several features and improvements that I plan to add to the app in the coming months. Some of the items on my roadmap include:
 
-- Improved reporting and analytics: We plan to add more robust reporting and analytics capabilities to SimpliBuy, allowing users to gain insights into their shopping habits and identify areas where they can save money.
+- Improved reporting and analytics: I plan to add more robust reporting and analytics capabilities to SimpliBuy, allowing users to gain insights into their shopping habits and identify areas where they can save money.
 
 - Additional languages: I aim to make SimpliBuy accessible to users around the world, and plan to add support for additional languages in the future.
 
-- Bug fixes and performance improvements: As with any software project, we will continue to identify and address any bugs or performance issues that arise, to ensure that SimpliBuy is always running smoothly.
+- Bug fixes and performance improvements: As with any software project, I will continue to identify and address any bugs or performance issues that arise, to ensure that SimpliBuy is always running smoothly.
 
 We are committed to making SimpliBuy the best shopping app on the market, and will continue to add new features and improvements to the app over time.
 
