@@ -10,7 +10,26 @@
 - [License](#license)
 - [Contact](#contact)
 
-# SimpliBuy - Shopping Calculator App
+# SimpliBuy - Shopping Calculator AppAs a former Middle/Middle+ Flutter Developer at [Company Name], I had the opportunity to work on exciting projects that utilized the latest Flutter technology. I was part of a dynamic team of developers who were passionate about creating high-quality, visually appealing, and performant mobile applications.
+
+Responsibilities:
+
+Collaborated with a team of developers and designers to design and develop Flutter applications
+Wrote clean, efficient, and well-documented code in Dart
+Implemented beautiful and responsive UI/UX designs that enhanced the user experience
+Participated in code reviews to maintain code quality and ensure adherence to established coding standards
+Debugged and troubleshooted issues in existing applications
+Worked closely with designers and product managers to identify and implement new features and enhancements
+Kept up-to-date with the latest trends and best practices in Flutter development
+Contributed to project planning and estimation, including identifying risks and proposing solutions
+Communicated progress and status updates to project managers and other team members
+Achievements:
+
+Successfully delivered multiple Flutter applications on time and within budget
+Developed a new feature that improved user engagement by 30%
+Participated in the development of a large-scale Flutter application that received positive reviews from users and stakeholders
+Mentored junior developers and provided code reviews to maintain code quality and ensure adherence to established coding standards
+Presented at company-wide developer meetings on best practices for Flutter developmentw
 This is a Flutter app that helps users keep track of the total cost of their shopping while they add items to their basket.
 
 ## Problem
@@ -56,15 +75,15 @@ Once the necessary classes have been generated, you can run the app using the fo
 ```flutter run```
 
 # Future Road Map
-As SimpliBuy continues to evolve, there are several features and improvements that we plan to add to the app in the coming months. Some of the items on my roadmap include:
+As SimpliBuy continues to evolve, there are several features and improvements that I plan to add to the app in the coming months. Some of the items on my roadmap include:
 
-- Improved reporting and analytics: We plan to add more robust reporting and analytics capabilities to SimpliBuy, allowing users to gain insights into their shopping habits and identify areas where they can save money.
+- Improved reporting and analytics: I plan to add more robust reporting and analytics capabilities to SimpliBuy, allowing users to gain insights into their shopping habits and identify areas where they can save money.
 
 - Additional languages: I aim to make SimpliBuy accessible to users around the world, and plan to add support for additional languages in the future.
 
-- Bug fixes and performance improvements: As with any software project, we will continue to identify and address any bugs or performance issues that arise, to ensure that SimpliBuy is always running smoothly.
+- Bug fixes and performance improvements: As with any software project, I will continue to identify and address any bugs or performance issues that arise, to ensure that SimpliBuy is always running smoothly.
 
-We are committed to making SimpliBuy the best shopping app on the market, and will continue to add new features and improvements to the app over time.
+I are committed to making SimpliBuy the best shopping app on the market, and will continue to add new features and improvements to the app over time.
 
 # License
 This project is released under the [MIT License](https://opensource.org/licenses/MIT).
