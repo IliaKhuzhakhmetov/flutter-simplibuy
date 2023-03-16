@@ -26,7 +26,7 @@ This app provides a convenient way for users to keep track of the total cost of 
 | ![Image 1](.git_images/all_purchases.PNG)| ![Image 2](.git_images/adding_purchase.PNG) | ![Image 3](.git_images/add_item_dialog.PNG) |
 | All Purchases | Add Item | Dialog |
 | ![Image 4](.git_images/date_selection.PNG) | ![Image 5](.git_images/purchase_deletion.PNG) | ![Image 6](.git_images/ligh.PNG) |
-| Date Selection | Delete Purchase Dialog | Ligh version |
+| Date Selection | Delete Purchase Dialog | Light version |
 
 # Technologies
 
