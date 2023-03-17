@@ -10,7 +10,7 @@
 - [License](#license)
 - [Contact](#contact)
 
-# SimpliBuy - Shopping Calculator AppAs a former Middle/Middle+ Flutter Developer at [Company Name], I had the opportunity to work on exciting projects that utilized the latest Flutter technology. I was part of a dynamic team of developers who were passionate about creating high-quality, visually appealing, and performant mobile applications.
+# SimpliBuy - Shopping Calculator App
 
 Responsibilities:
 
