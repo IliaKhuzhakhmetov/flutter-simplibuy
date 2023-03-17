@@ -12,24 +12,6 @@
 
 # SimpliBuy - Shopping Calculator App
 
-Responsibilities:
-
-Collaborated with a team of developers and designers to design and develop Flutter applications
-Wrote clean, efficient, and well-documented code in Dart
-Implemented beautiful and responsive UI/UX designs that enhanced the user experience
-Participated in code reviews to maintain code quality and ensure adherence to established coding standards
-Debugged and troubleshooted issues in existing applications
-Worked closely with designers and product managers to identify and implement new features and enhancements
-Kept up-to-date with the latest trends and best practices in Flutter development
-Contributed to project planning and estimation, including identifying risks and proposing solutions
-Communicated progress and status updates to project managers and other team members
-Achievements:
-
-Successfully delivered multiple Flutter applications on time and within budget
-Developed a new feature that improved user engagement by 30%
-Participated in the development of a large-scale Flutter application that received positive reviews from users and stakeholders
-Mentored junior developers and provided code reviews to maintain code quality and ensure adherence to established coding standards
-Presented at company-wide developer meetings on best practices for Flutter developmentw
 This is a Flutter app that helps users keep track of the total cost of their shopping while they add items to their basket.
 
 ## Problem
