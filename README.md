@@ -86,7 +86,7 @@ As SimpliBuy continues to evolve, there are several features and improvements th
 I are committed to making SimpliBuy the best shopping app on the market, and will continue to add new features and improvements to the app over time.
 
 # License
-This project is released under the [MIT License](https://opensource.org/licenses/MIT).
+This project is released under the [MIT License](https://github.com/IliaKhuzhakhmetov/flutter-simplibuy/blob/main/LICENSE).
 
 # Contact 
 - [Telegram](https://t.me/flutter_app_creator)
