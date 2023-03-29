@@ -1,5 +1,4 @@
 import 'package:e_shop_flutter/data/datasources/local_items.datasource.dart';
-import 'package:e_shop_flutter/data/services/local_database/dao/items_dao/items_dao.dart';
 import 'package:e_shop_flutter/data/services/local_database/database.dart';
 import 'package:e_shop_flutter/domain/entities/item/item_view.dart';
 import 'package:e_shop_flutter/domain/repositories/items.repository.dart';
