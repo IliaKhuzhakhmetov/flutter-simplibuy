@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/di/di.dart';
-import 'ui/application/application.dart';
+import 'presentation/application/application.dart';
 
 void main() {
   //Initialize DI

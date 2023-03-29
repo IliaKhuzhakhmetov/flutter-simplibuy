@@ -2,13 +2,13 @@ part of '../di.dart';
 
 void _registerRespositories() {
   locator.registerLazySingleton<ItemsRepository>(
-    () => LocalItemsRepository(
-      dao: locator.get<LocalDatabase>().itemsDao,
+    () => ItemsRepositoryImpl(
+      itemDatasource: locator(),
     ),
   );
 
   locator.registerLazySingleton<PurchasesRepository>(
-    () => LocalPurchasesRepository(
+    () => PurchasesRepositoryImpl(
       dao: locator.get<LocalDatabase>().purchaseDao,
     ),
   );
