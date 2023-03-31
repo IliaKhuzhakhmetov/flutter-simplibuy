@@ -3,7 +3,7 @@ part of '../di.dart';
 void registerDatasources() {
   locator.registerLazySingleton<LocalItemsDatasource>(
     () => LocalItemsDatasourceImpl(
-      dao: locator.get<LocalDatabase>().itemsDao,
+      itemDao: locator.get<LocalDatabase>().itemsDao,
     ),
   );
 }
