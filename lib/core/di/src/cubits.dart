@@ -1,6 +1,10 @@
 part of '../di.dart';
 
 void _registerCubits() {
+  locator.registerFactory(
+    () => DeletePurchaseCubit(deletePurchaseUsecase: locator()),
+  );
+
   locator.registerFactory(() => AddItemDialogCubit());
 
   locator.registerFactory(
@@ -11,12 +15,12 @@ void _registerCubits() {
   );
 
   // PurchaseCubit
-  locator.registerFactory(() => PurchaseCubit(itemsRepository: locator()));
+  locator.registerFactory(
+      () => GetItemsByPurchaseCubit(itemsRepository: locator()));
 
   // PurchasesCubit
   locator.registerFactory(
-    () => PurchasesCubit(
-      deletePurchaseUsecase: locator(),
+    () => GetAllPurchasesCubit(
       getPurchasesUsecase: locator(),
     ),
   );

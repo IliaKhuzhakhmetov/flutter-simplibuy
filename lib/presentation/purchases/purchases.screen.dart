@@ -6,7 +6,6 @@ import 'package:e_shop_flutter/core/utils/pair.dart';
 import 'package:e_shop_flutter/domain/entities/purchase_view.dart';
 import 'package:e_shop_flutter/presentation/add_purchase/add_purchase.screen.dart';
 import 'package:e_shop_flutter/presentation/purchases/widgets/change_theme_button.dart';
-import 'package:e_shop_flutter/presentation/purchases/widgets/delete_purchase_dialog.dart';
 import 'package:e_shop_flutter/presentation/purchases/widgets/purchase_group_header_widget.dart';
 import 'package:e_shop_flutter/presentation/purchases/widgets/purchase_tile.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +14,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router_flow/go_router_flow.dart';
 import 'package:grouped_list/grouped_list.dart';
 
-import 'logic/purchases.cubit.dart';
-import 'logic/purchases.state.dart';
+import '../cubits/get_all_purchases_cubit/get_all_purchases_cubit.dart';
+import '../cubits/get_all_purchases_cubit/get_all_purchases_state.dart';
 
 class PurchasesPage extends StatelessWidget {
   static const String routeName = '/purchase';
@@ -27,12 +26,15 @@ class PurchasesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return BlocProvider<PurchasesCubit>(
+    return BlocProvider<GetAllPurchasesCubit>(
       create: (_) => locator()..fetch(),
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _onFloatingPressed(context),
-          child: SvgPicture.asset(PrimaryIcons.icShoppingCart),
+        floatingActionButton:
+            BlocBuilder<GetAllPurchasesCubit, GetAllPurchasesState>(
+          builder: (context, state) => FloatingActionButton(
+            onPressed: () => _onFloatingPressed(context),
+            child: SvgPicture.asset(PrimaryIcons.icShoppingCart),
+          ),
         ),
         body: SafeArea(
           child: Column(
@@ -59,9 +61,9 @@ class PurchasesPage extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: BlocBuilder<PurchasesCubit, PurchasesState>(
+                child: BlocBuilder<GetAllPurchasesCubit, GetAllPurchasesState>(
                   builder: (context, state) => switch (state) {
-                    PurchasesFetched() =>
+                    GetAllPurchasesFetched() =>
                       GroupedListView<PurchaseView, Pair<String, String>>(
                         elements: state.purchases,
                         groupBy: (element) => Pair<String, String>(
@@ -75,18 +77,14 @@ class PurchasesPage extends StatelessWidget {
                         ),
                         itemBuilder: (_, purchase) => PurchaseTile(
                           purchase: purchase,
-                          onLongPressed: () => _showDeleteDialog(
-                            context,
-                            purchases: state.purchases,
-                            purchase: purchase,
-                          ),
+                          onDeleted: context.read<GetAllPurchasesCubit>().fetch,
                         ),
                         stickyHeaderBackgroundColor:
                             theme.scaffoldBackgroundColor,
                         useStickyGroupSeparators: true,
                         floatingHeader: false,
                       ),
-                    PurchasesFetching() => const Center(
+                    GetAllPurchasesFetching() => const Center(
                         child: CircularProgressIndicator.adaptive(),
                       ),
                     _ => const SizedBox(),
@@ -108,29 +106,9 @@ class PurchasesPage extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         if (result ?? false) {
-          context.read<PurchasesCubit>().fetch();
+          context.read<GetAllPurchasesCubit>().fetch();
         }
       },
-    );
-  }
-
-  void _showDeleteDialog(
-    BuildContext context, {
-    required List<PurchaseView> purchases,
-    required PurchaseView purchase,
-  }) {
-    showDialog(
-      context: context,
-      builder: (_) => DeletePurchaseDialog(
-        purchase: purchase,
-        onDeletePressed: () {
-          context.read<PurchasesCubit>().delete(
-                purchases: purchases,
-                purchase: purchase,
-              );
-          Navigator.pop(context);
-        },
-      ),
     );
   }
 }
