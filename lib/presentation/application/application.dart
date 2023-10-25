@@ -1,31 +1,30 @@
-// ignore: overridden_fields
-import 'package:e_shop_flutter/core/base/injectable_state.dart';
+import 'package:e_shop_flutter/core/di/di.dart';
 import 'package:e_shop_flutter/core/res/themes/primary.themes.dart';
+import 'package:e_shop_flutter/presentation/application/logic/application.cubit.dart';
 import 'package:e_shop_flutter/presentation/application/routes/application_routes.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'logic/application.cubit.dart';
 import 'logic/application.state.dart';
 
-class Application extends StatefulWidget {
+class Application extends StatelessWidget {
   @override
-  _ApplicationState createState() => _ApplicationState();
-}
-
-class _ApplicationState
-    extends InjectableState<Application, ApplicationCubit, ApplicationState> {
-  @override
-  Widget builder(BuildContext context, ApplicationState state) =>
-      MaterialApp.router(
-        routerConfig: applicationRouter,
-        theme: PrimaryTheme.buildTheme(
-          brightness: state.maybeWhen(
-            purchasesThemeChanged: (brightness) => brightness,
-            orElse: () => MediaQueryData.fromWindow(
-              WidgetsBinding.instance.window,
-            ).platformBrightness,
+  Widget build(BuildContext context) => BlocProvider<ApplicationCubit>(
+        create: (_) => locator(),
+        child: BlocBuilder<ApplicationCubit, ApplicationState>(
+          builder: (context, state) => MaterialApp.router(
+            routerConfig: applicationRouter,
+            theme: PrimaryTheme.buildTheme(
+              brightness: state.maybeWhen(
+                purchasesThemeChanged: (brightness) => brightness,
+                orElse: () => MediaQueryData.fromView(
+                  PlatformDispatcher.instance.views.first,
+                ).platformBrightness,
+              ),
+            ),
+            debugShowCheckedModeBanner: false,
           ),
         ),
-        debugShowCheckedModeBanner: false,
       );
 }

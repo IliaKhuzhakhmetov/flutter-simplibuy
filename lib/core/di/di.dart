@@ -12,12 +12,11 @@ import 'package:e_shop_flutter/domain/usecases/change_app_theme_brighness.usecas
 import 'package:e_shop_flutter/domain/usecases/delete_purchase.usecase.dart';
 import 'package:e_shop_flutter/domain/usecases/get_purchases.usecase.dart';
 import 'package:e_shop_flutter/domain/usecases/get_saved_brighness.usecase.dart';
-import 'package:e_shop_flutter/presentation/add_purchase/add_item_dialog/logic/add_item_dialog.cubit.dart';
 import 'package:e_shop_flutter/presentation/add_purchase/logic/add_purchase.cubit.dart';
 import 'package:e_shop_flutter/presentation/application/logic/application.cubit.dart';
 import 'package:e_shop_flutter/presentation/cubits/delete_purchase_cubit/delete_purchase.cubit.dart';
-import 'package:e_shop_flutter/presentation/cubits/get_items_by_purchase_cubit/get_Items_by_purchase.cubit.dart';
 import 'package:e_shop_flutter/presentation/cubits/get_all_purchases_cubit/get_all_purchases_cubit.dart';
+import 'package:e_shop_flutter/presentation/cubits/get_items_by_purchase_cubit/get_Items_by_purchase.cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

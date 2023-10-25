@@ -5,8 +5,6 @@ void _registerCubits() {
     () => DeletePurchaseCubit(deletePurchaseUsecase: locator()),
   );
 
-  locator.registerFactory(() => AddItemDialogCubit());
-
   locator.registerFactory(
     () => ApplicationCubit(
       changeAppThemeBrightnessUseCase: locator(),

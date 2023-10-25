@@ -7,13 +7,13 @@ import 'application.state.dart';
 
 class ApplicationCubit extends Cubit<ApplicationState> {
   final GetSavedBrightnessUseCase _getSavedBrightnessUseCase;
-  final ChangeAppThemeBrightnessUseCase _changeAppThemeBrighnessUseCase;
+  final ChangeAppThemeBrightnessUseCase _changeAppThemeBrightnessUseCase;
 
   ApplicationCubit({
     required GetSavedBrightnessUseCase getSavedBrightnessUseCase,
     required ChangeAppThemeBrightnessUseCase changeAppThemeBrightnessUseCase,
   })  : _getSavedBrightnessUseCase = getSavedBrightnessUseCase,
-        _changeAppThemeBrighnessUseCase = changeAppThemeBrightnessUseCase,
+        _changeAppThemeBrightnessUseCase = changeAppThemeBrightnessUseCase,
         super(const ApplicationState.mainInitial()) {
     init();
   }
@@ -28,7 +28,7 @@ class ApplicationCubit extends Cubit<ApplicationState> {
         ? Brightness.dark
         : Brightness.light;
 
-    _changeAppThemeBrighnessUseCase(brightnessToSave).then((result) {
+    _changeAppThemeBrightnessUseCase(brightnessToSave).then((result) {
       emit(ApplicationState.purchasesThemeChanged(brightnessToSave));
     });
   }
