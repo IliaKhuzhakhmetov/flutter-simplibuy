@@ -1,10 +1,10 @@
 import 'package:e_shop_flutter/data/services/app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 
-class ChangeAppThemeBrighnessUseCase {
+class ChangeAppThemeBrightnessUseCase {
   final AppSettings _appSettings;
 
-  ChangeAppThemeBrighnessUseCase({
+  ChangeAppThemeBrightnessUseCase({
     required AppSettings appSettings,
   }) : _appSettings = appSettings;
 

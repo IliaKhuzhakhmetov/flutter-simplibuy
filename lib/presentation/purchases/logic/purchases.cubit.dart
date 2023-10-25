@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_shop_flutter/core/utils/list_extensions.dart';
-import 'package:e_shop_flutter/core/utils/string_extensions.dart';
 import 'package:e_shop_flutter/domain/entities/purchase_view.dart';
 import 'package:e_shop_flutter/domain/usecases/delete_purchase.usecase.dart';
 import 'package:e_shop_flutter/domain/usecases/get_purchases.usecase.dart';
@@ -22,9 +21,12 @@ class PurchasesCubit extends Cubit<PurchasesState> {
 
   final List<PurchaseView> purchases = [];
 
-  String getSumByDate(String date) =>
-      '${purchases.where((element) => element.stringDate == date).map((e) => e.sum).toList().sum()}'
-          .getDecimalValue();
+  String getSumByDate(String date) => purchases
+      .where((element) => element.stringDate == date)
+      .map((e) => e.sum)
+      .toList()
+      .sum()
+      .toStringAsFixed(2);
 
   void fetch() => _getPurchasesUsecase().then(
         (list) {

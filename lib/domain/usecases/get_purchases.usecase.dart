@@ -4,11 +4,8 @@ import 'package:e_shop_flutter/domain/repositories/purchases.repository.dart';
 class GetPurchasesUsecase {
   final PurchasesRepository _purchasesRepository;
 
-  GetPurchasesUsecase({
-    required PurchasesRepository purchasesRepository,
-  }) : _purchasesRepository = purchasesRepository;
+  GetPurchasesUsecase({required PurchasesRepository purchasesRepository})
+      : _purchasesRepository = purchasesRepository;
 
-  Future<List<PurchaseView>> call() => _purchasesRepository
-      .getPurchases()
-      .then((value) => value.map((e) => e.mapToPurchaseView()).toList());
+  Future<List<PurchaseView>> call() => _purchasesRepository.getPurchases();
 }

@@ -1,6 +1,6 @@
 import 'package:e_shop_flutter/core/utils/list_extensions.dart';
-import 'package:e_shop_flutter/data/services/local_database/database.dart';
-import 'package:e_shop_flutter/domain/entities/item/item_view.dart';
+import 'package:e_shop_flutter/domain/entities/item_view.dart';
+import 'package:e_shop_flutter/domain/entities/purchase_view.dart';
 import 'package:e_shop_flutter/domain/repositories/items.repository.dart';
 import 'package:e_shop_flutter/domain/repositories/purchases.repository.dart';
 
@@ -19,21 +19,22 @@ class AddNewPurchaseUseCase {
     required DateTime date,
     required List<ItemView> items,
   }) async {
-    final createdId = await _purchasesRepository.addPurchase(
-      PurchaseData(
+    final purchaseId = await _purchasesRepository.addPurchase(
+      PurchaseView(
+        id: -1,
         name: purchaseName,
         sum: items.map((e) => e.price * e.count).toList().sum(),
         date: date,
       ),
     );
 
-    final List<ItemData> itemsData = items
-        .map(
-          (itemView) => itemView.mapToItemData(createdId),
-        )
-        .toList();
-
-    await _itemsRepository.addItems(itemsData);
+    await _itemsRepository.addItems(
+      items
+          .map((item) => item.copyWith(
+                purchaseId: purchaseId,
+              ))
+          .toList(),
+    );
 
     return true;
   }

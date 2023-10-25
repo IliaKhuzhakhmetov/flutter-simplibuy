@@ -1,4 +1,6 @@
 import 'package:e_shop_flutter/data/datasources/local_items.datasource.dart';
+import 'package:e_shop_flutter/data/mappers/item_mapper.dart';
+import 'package:e_shop_flutter/data/mappers/purchase_mapper.dart';
 import 'package:e_shop_flutter/data/repositories/items.repository_impl.dart';
 import 'package:e_shop_flutter/data/repositories/purchase.repository_impl.dart';
 import 'package:e_shop_flutter/data/services/app_settings/app_settings.dart';
@@ -19,9 +21,10 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'src/cubits.dart';
+part 'src/datasources.dart';
+part 'src/mappers.dart';
 part 'src/repositories.dart';
 part 'src/usecases.dart';
-part 'src/datasources.dart';
 
 final GetIt locator = GetIt.instance;
 
@@ -30,7 +33,9 @@ void setUp() {
   locator.registerLazySingleton(() => AppSettings(locator.get()));
   locator.registerSingletonAsync(() => Future.value(LocalDatabase()));
 
-  _registerRespositories();
+  _registerMappers();
+  _registerDatasources();
+  _registerRepositories();
   _registerUsecases();
   _registerCubits();
 }

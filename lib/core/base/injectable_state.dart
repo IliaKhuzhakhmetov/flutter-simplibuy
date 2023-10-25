@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'state_mixins.dart';
 
+@Deprecated('Use standard methods to getting bloc and cubits')
 abstract class InjectableState<T extends StatefulWidget, G extends Cubit<S>, S>
     extends State<T> {
   @protected

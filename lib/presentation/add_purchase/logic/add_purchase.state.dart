@@ -1,5 +1,5 @@
 import 'package:e_shop_flutter/core/base/state_mixins.dart';
-import 'package:e_shop_flutter/domain/entities/item/item_view.dart';
+import 'package:e_shop_flutter/domain/entities/item_view.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'add_purchase.state.freezed.dart';

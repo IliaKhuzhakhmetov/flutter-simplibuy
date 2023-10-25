@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_shop_flutter/core/utils/list_extensions.dart';
 import 'package:e_shop_flutter/core/utils/string_extensions.dart';
-import 'package:e_shop_flutter/domain/entities/item/item_view.dart';
+import 'package:e_shop_flutter/domain/entities/item_view.dart';
 import 'package:e_shop_flutter/domain/usecases/add_new_purchase.usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -48,12 +48,15 @@ class AddPurchaseCubit extends Cubit<AddPurchaseState> {
     required String itemName,
     required String itemPrice,
   }) {
-    _items.add(ItemView(
-      id: _items.length,
-      name: itemName,
-      count: 1,
-      price: double.tryParse(itemPrice.replaceAll(',', '.')) ?? 0,
-    ));
+    _items.add(
+      ItemView(
+        id: _items.length,
+        name: itemName,
+        count: 1,
+        price: double.tryParse(itemPrice.replaceAll(',', '.')) ?? 0,
+        purchaseId: -1,
+      ),
+    );
     emit(AddPurchaseState.itemsChanged(_items, _items.length));
   }
 

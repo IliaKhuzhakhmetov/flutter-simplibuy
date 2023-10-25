@@ -4,7 +4,7 @@ import 'package:e_shop_flutter/core/res/assets/primary.icons.dart';
 import 'package:e_shop_flutter/core/res/constants/primary.paddings.dart';
 import 'package:e_shop_flutter/core/res/constants/primary.radiuses.dart';
 import 'package:e_shop_flutter/core/utils/pair.dart';
-import 'package:e_shop_flutter/domain/entities/item/item_view.dart';
+import 'package:e_shop_flutter/domain/entities/item_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router_flow/go_router_flow.dart';

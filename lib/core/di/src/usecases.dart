@@ -2,22 +2,25 @@ part of '../di.dart';
 
 void _registerUsecases() {
   locator.registerFactory(
-      () => GetSavedBrightnessUseCase(appSettings: locator.get()));
+    () => GetSavedBrightnessUseCase(appSettings: locator()),
+  );
 
   locator.registerFactory(
-      () => ChangeAppThemeBrighnessUseCase(appSettings: locator.get()));
+    () => ChangeAppThemeBrightnessUseCase(appSettings: locator()),
+  );
 
   locator.registerFactory(
     () => AddNewPurchaseUseCase(
-      purchasesRepository: locator.get(),
-      itemsRepository: locator.get(),
+      purchasesRepository: locator(),
+      itemsRepository: locator(),
     ),
   );
 
   locator.registerFactory(
-    () => DeletePurchaseUsecase(purchasesRepository: locator.get()),
+    () => DeletePurchaseUsecase(purchasesRepository: locator()),
   );
 
   locator.registerFactory(
-      () => GetPurchasesUsecase(purchasesRepository: locator.get()));
+    () => GetPurchasesUsecase(purchasesRepository: locator()),
+  );
 }

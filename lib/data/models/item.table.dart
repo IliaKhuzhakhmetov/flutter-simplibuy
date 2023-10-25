@@ -5,6 +5,7 @@ class ItemTable extends Table {
   TextColumn get name => text()();
   IntColumn get count => integer().withDefault(const Constant(1))();
   RealColumn get price => real().withDefault(const Constant(0.0))();
-  IntColumn get purchaseId =>
-      integer().customConstraint('REFERENCES purchase(id) ON DELETE CASCADE')();
+  IntColumn get purchaseId => integer().nullable().customConstraint(
+        'REFERENCES purchase(id) ON DELETE CASCADE',
+      )();
 }

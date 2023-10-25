@@ -12,7 +12,7 @@ class PurchaseCubit extends Cubit<PurchaseState> {
 
   // TODO: Refactor to usecase
   void loadItems(int purchaseId) =>
-      _itemsRepository.getItemsBypurchaseId(purchaseId).then(
+      _itemsRepository.getItemsByPurchaseId(purchaseId).then(
         (items) {
           emit(PurchaseState.itemsFetched([...items]));
         },

@@ -1,18 +1,7 @@
 import 'dart:convert';
 
 import 'package:e_shop_flutter/core/utils/string_extensions.dart';
-import 'package:e_shop_flutter/data/services/local_database/database.dart';
 import 'package:intl/intl.dart';
-
-extension PurchaseDataExtensions on PurchaseData {
-  PurchaseView mapToPurchaseView() => PurchaseView(
-      id: id ?? -1, name: name, sum: sum, date: date ?? DateTime.now());
-}
-
-extension PurchaseViewExtensions on PurchaseView {
-  PurchaseData mapToPurchaseData() =>
-      PurchaseData(id: id, name: name, sum: sum, date: date);
-}
 
 class PurchaseView {
   final int id;

@@ -9,6 +9,6 @@ class DeletePurchaseUsecase {
   }) : _purchasesRepository = purchasesRepository;
 
   Future<bool> call(PurchaseView purchase) => _purchasesRepository
-      .deletePurchase(purchase.mapToPurchaseData())
+      .deletePurchase(purchase)
       .then((result) => true);
 }

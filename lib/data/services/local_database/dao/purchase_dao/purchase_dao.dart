@@ -9,9 +9,11 @@ class PurchaseDao extends DatabaseAccessor<LocalDatabase>
     with _$PurchaseDaoMixin {
   PurchaseDao(LocalDatabase db) : super(db);
 
-  Future deletePurchase(PurchaseData data) => delete(purchase).delete(data);
+  Future deletePurchase(PurchaseTableData data) => delete(purchaseTable).delete(
+        data,
+      );
 
-  Future<List<PurchaseData>> getPurchases() => (select(purchase)
+  Future<List<PurchaseTableData>> getPurchases() => (select(purchaseTable)
         ..orderBy(
           [
             (u) => OrderingTerm(
@@ -24,5 +26,6 @@ class PurchaseDao extends DatabaseAccessor<LocalDatabase>
         ))
       .get();
 
-  Future<int> insert(PurchaseData value) => into(purchase).insert(value);
+  Future<int> insert(PurchaseTableData value) =>
+      into(purchaseTable).insert(value);
 }
