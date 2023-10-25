@@ -1,9 +1,20 @@
 import 'dart:convert';
 
+import 'package:e_shop_flutter/core/utils/list_extensions.dart';
 import 'package:e_shop_flutter/core/utils/string_extensions.dart';
+import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
-class PurchaseView {
+extension PurchaseListExtension on List<PurchaseView> {
+  String getSumByDate(String date) =>
+      where((element) => element.stringDate == date)
+          .map((e) => e.sum)
+          .toList()
+          .sum()
+          .toStringAsFixed(2);
+}
+
+class PurchaseView extends Equatable {
   final int id;
   final String name;
   final double sum;
@@ -62,18 +73,5 @@ class PurchaseView {
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is PurchaseView &&
-        other.id == id &&
-        other.name == name &&
-        other.sum == sum &&
-        other.date == date;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^ name.hashCode ^ sum.hashCode ^ date.hashCode;
-  }
+  List<Object?> get props => [id, name, sum, date];
 }

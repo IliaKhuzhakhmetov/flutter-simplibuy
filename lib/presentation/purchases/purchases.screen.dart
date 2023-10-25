@@ -1,72 +1,37 @@
-import 'package:e_shop_flutter/core/base/injectable_state.dart';
+import 'package:e_shop_flutter/core/di/di.dart';
 import 'package:e_shop_flutter/core/extensions/context.extension.dart';
 import 'package:e_shop_flutter/core/res/assets/primary.icons.dart';
 import 'package:e_shop_flutter/core/res/constants/primary.paddings.dart';
-import 'package:e_shop_flutter/core/res/constants/primary.radiuses.dart';
 import 'package:e_shop_flutter/core/utils/pair.dart';
 import 'package:e_shop_flutter/domain/entities/purchase_view.dart';
 import 'package:e_shop_flutter/presentation/add_purchase/add_purchase.screen.dart';
-import 'package:e_shop_flutter/presentation/application/logic/application.cubit.dart';
-import 'package:e_shop_flutter/presentation/purchase/purchase.screen.dart';
+import 'package:e_shop_flutter/presentation/purchases/widgets/change_theme_button.dart';
+import 'package:e_shop_flutter/presentation/purchases/widgets/delete_purchase_dialog.dart';
+import 'package:e_shop_flutter/presentation/purchases/widgets/purchase_group_header_widget.dart';
+import 'package:e_shop_flutter/presentation/purchases/widgets/purchase_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router_flow/go_router_flow.dart';
 import 'package:grouped_list/grouped_list.dart';
+
 import 'logic/purchases.cubit.dart';
 import 'logic/purchases.state.dart';
 
-class PurchasesPage extends StatefulWidget {
+class PurchasesPage extends StatelessWidget {
   static const String routeName = '/purchase';
 
   const PurchasesPage();
 
   @override
-  _PurchasesPageState createState() => _PurchasesPageState();
-}
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
 
-class _PurchasesPageState
-    extends InjectableState<PurchasesPage, PurchasesCubit, PurchasesState> {
-  void _showDeleteDialog(PurchaseView purchase) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('CANCEL'),
-          ),
-          TextButton(
-            onPressed: () {
-              cubit.delete(purchase);
-              Navigator.pop(context);
-            },
-            child: const Text('DELETE'),
-          )
-        ],
-        title: Text(
-          'Are you sure you want to delete the ${purchase.name.toUpperCase()}?',
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget builder(BuildContext context, PurchasesState state) => Scaffold(
+    return BlocProvider<PurchasesCubit>(
+      create: (_) => locator()..fetch(),
+      child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            final bool? result = await context.push<bool>(
-              AddPurchaseScreen.routeName,
-            );
-
-            WidgetsBinding.instance.addPostFrameCallback(
-              (_) {
-                if (result ?? false) {
-                  cubit.fetch();
-                }
-              },
-            );
-          },
+          onPressed: () => _onFloatingPressed(context),
           child: SvgPicture.asset(PrimaryIcons.icShoppingCart),
         ),
         body: SafeArea(
@@ -89,85 +54,83 @@ class _PurchasesPageState
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    InkWell(
-                      borderRadius: PrimaryRadiuses.middle,
-                      onTap: () =>
-                          context.read<ApplicationCubit>().changeThemeMode(
-                                Theme.of(context).brightness,
-                              ),
-                      child: Padding(
-                        padding: PrimaryPaddings.standard,
-                        child: SvgPicture.asset(
-                          Theme.of(context).brightness == Brightness.light
-                              ? PrimaryIcons.icMoon
-                              : PrimaryIcons.icSun,
-                          colorFilter: ColorFilter.mode(
-                            Theme.of(context).iconTheme.color!,
-                            BlendMode.srcIn,
-                          ),
-                          width: 32,
-                          height: 32,
-                        ),
-                      ),
-                    )
+                    const ChangeThemeButton(),
                   ],
                 ),
               ),
               Expanded(
-                child: GroupedListView<PurchaseView, Pair<String, String>>(
-                  elements: cubit.purchases,
-                  groupBy: (element) => Pair<String, String>(
-                    element.stringDate,
-                    cubit.getSumByDate(element.stringDate),
-                  ),
-                  sort: false,
-                  groupSeparatorBuilder: (dateAndSum) => Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Divider(),
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              dateAndSum.first,
-                              style: context.headlineMedium,
-                            ),
-                            // TODO: Move to theme
-                            Text(
-                              '${dateAndSum.second} \$',
-                              style: context.titleLarge,
-                            ),
-                          ],
+                child: BlocBuilder<PurchasesCubit, PurchasesState>(
+                  builder: (context, state) => switch (state) {
+                    PurchasesFetched() =>
+                      GroupedListView<PurchaseView, Pair<String, String>>(
+                        elements: state.purchases,
+                        groupBy: (element) => Pair<String, String>(
+                          element.stringDate,
+                          state.purchases.getSumByDate(element.stringDate),
                         ),
+                        sort: false,
+                        groupSeparatorBuilder: (dateAndSum) =>
+                            PurchaseGroupHeaderWidget(
+                          dateAndSum: dateAndSum,
+                        ),
+                        itemBuilder: (_, purchase) => PurchaseTile(
+                          purchase: purchase,
+                          onLongPressed: () => _showDeleteDialog(
+                            context,
+                            purchases: state.purchases,
+                            purchase: purchase,
+                          ),
+                        ),
+                        stickyHeaderBackgroundColor:
+                            theme.scaffoldBackgroundColor,
+                        useStickyGroupSeparators: true,
+                        floatingHeader: false,
                       ),
-                      const Divider(),
-                    ],
-                  ),
-                  itemBuilder: (context, PurchaseView purchase) => ListTile(
-                    onLongPress: () => _showDeleteDialog(purchase),
-                    onTap: () => context.push(
-                      PurchaseScreen.routeName,
-                      extra: purchase,
-                    ),
-                    title: Text(
-                      purchase.name,
-                      style: context.titleLarge,
-                    ),
-                    subtitle: Text(
-                      '${purchase.normalSum} \$',
-                      style: context.titleMedium,
-                    ),
-                  ),
-                  stickyHeaderBackgroundColor:
-                      Theme.of(context).scaffoldBackgroundColor,
-                  useStickyGroupSeparators: true, // optional
-                  floatingHeader: false, // opt// optional
+                    PurchasesFetching() => const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                    _ => const SizedBox(),
+                  },
                 ),
               )
             ],
           ),
         ),
-      );
+      ),
+    );
+  }
+
+  Future<void> _onFloatingPressed(BuildContext context) async {
+    final bool? result = await context.push<bool>(
+      AddPurchaseScreen.routeName,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        if (result ?? false) {
+          context.read<PurchasesCubit>().fetch();
+        }
+      },
+    );
+  }
+
+  void _showDeleteDialog(
+    BuildContext context, {
+    required List<PurchaseView> purchases,
+    required PurchaseView purchase,
+  }) {
+    showDialog(
+      context: context,
+      builder: (_) => DeletePurchaseDialog(
+        purchase: purchase,
+        onDeletePressed: () {
+          context.read<PurchasesCubit>().delete(
+                purchases: purchases,
+                purchase: purchase,
+              );
+          Navigator.pop(context);
+        },
+      ),
+    );
+  }
 }

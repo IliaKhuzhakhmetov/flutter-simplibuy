@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:e_shop_flutter/core/utils/list_extensions.dart';
 import 'package:e_shop_flutter/domain/entities/purchase_view.dart';
 import 'package:e_shop_flutter/domain/usecases/delete_purchase.usecase.dart';
 import 'package:e_shop_flutter/domain/usecases/get_purchases.usecase.dart';
@@ -15,29 +14,40 @@ class PurchasesCubit extends Cubit<PurchasesState> {
     required GetPurchasesUsecase getPurchasesUsecase,
   })  : _deletePurchaseUsecase = deletePurchaseUsecase,
         _getPurchasesUsecase = getPurchasesUsecase,
-        super(const PurchasesState(purchases: [])) {
-    fetch();
+        super(const PurchaseInitial());
+
+  Future<void> fetch() async {
+    if (state is PurchasesFetching) return;
+
+    emit(const PurchasesFetching());
+
+    try {
+      final result = await _getPurchasesUsecase();
+
+      emit(PurchasesFetched(purchases: result));
+    } on Exception catch (exception) {
+      emit(PurchasesFailed(exception: exception));
+    }
   }
 
-  final List<PurchaseView> purchases = [];
+  Future<void> delete({
+    required List<PurchaseView> purchases,
+    required PurchaseView purchase,
+  }) async {
+    if (state is PurchasesFetching) return;
 
-  String getSumByDate(String date) => purchases
-      .where((element) => element.stringDate == date)
-      .map((e) => e.sum)
-      .toList()
-      .sum()
-      .toStringAsFixed(2);
+    emit(const PurchasesFetching());
 
-  void fetch() => _getPurchasesUsecase().then(
-        (list) {
-          purchases
-            ..clear()
-            ..addAll(list);
-          emit(state.copyWith(purchases: [...purchases]));
-        },
-      );
+    try {
+      final result = await _deletePurchaseUsecase(purchase);
 
-  void delete(PurchaseView purchase) => _deletePurchaseUsecase(purchase).then(
-        (value) => fetch(),
-      );
+      if (result) {
+        purchases.remove(purchase);
+      }
+
+      emit(PurchasesFetched(purchases: purchases));
+    } on Exception catch (exception) {
+      emit(PurchasesFailed(exception: exception));
+    }
+  }
 }
