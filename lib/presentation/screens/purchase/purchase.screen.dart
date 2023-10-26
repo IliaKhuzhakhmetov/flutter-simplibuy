@@ -4,12 +4,11 @@ import 'package:e_shop_flutter/core/res/assets/primary.icons.dart';
 import 'package:e_shop_flutter/core/res/constants/primary.paddings.dart';
 import 'package:e_shop_flutter/domain/entities/purchase_view.dart';
 import 'package:e_shop_flutter/presentation/cubits/get_items_by_purchase_cubit/get_Items_by_purchase.cubit.dart';
-import 'package:e_shop_flutter/presentation/purchase/widgets/items_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../cubits/get_items_by_purchase_cubit/get_items_by_purchase.state.dart';
+import 'widgets/items_list_tile.dart';
 
 class PurchaseScreen extends StatelessWidget {
   static const String routeName = '/PurchaseScreen';

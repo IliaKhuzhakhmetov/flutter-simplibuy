@@ -1,13 +1,14 @@
+import 'package:e_shop_flutter/presentation/screens/application/application.dart';
 import 'package:flutter/material.dart';
 
 import 'core/di/di.dart';
-import 'presentation/application/application.dart';
 
 void main() {
   //Initialize DI
   setUp();
 
-  runApp(FutureBuilder(
+  runApp(
+    FutureBuilder(
       future: locator.allReady(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -15,5 +16,7 @@ void main() {
         } else {
           return const CircularProgressIndicator();
         }
-      }));
+      },
+    ),
+  );
 }

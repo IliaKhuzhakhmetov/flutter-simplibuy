@@ -4,18 +4,17 @@ import 'package:e_shop_flutter/core/res/assets/primary.icons.dart';
 import 'package:e_shop_flutter/core/res/constants/primary.paddings.dart';
 import 'package:e_shop_flutter/core/utils/pair.dart';
 import 'package:e_shop_flutter/domain/entities/purchase_view.dart';
-import 'package:e_shop_flutter/presentation/add_purchase/add_purchase.screen.dart';
-import 'package:e_shop_flutter/presentation/purchases/widgets/change_theme_button.dart';
-import 'package:e_shop_flutter/presentation/purchases/widgets/purchase_group_header_widget.dart';
-import 'package:e_shop_flutter/presentation/purchases/widgets/purchase_tile.dart';
+import 'package:e_shop_flutter/presentation/cubits/get_all_purchases_cubit/get_all_purchases_cubit.dart';
+import 'package:e_shop_flutter/presentation/screens/add_purchase/add_purchase.screen.dart';
+import 'package:e_shop_flutter/presentation/screens/purchases/widgets/purchase_group_header_widget.dart';
+import 'package:e_shop_flutter/presentation/screens/purchases/widgets/purchase_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router_flow/go_router_flow.dart';
 import 'package:grouped_list/grouped_list.dart';
 
-import '../cubits/get_all_purchases_cubit/get_all_purchases_cubit.dart';
-import '../cubits/get_all_purchases_cubit/get_all_purchases_state.dart';
+import 'widgets/change_theme_button.dart';
 
 class PurchasesPage extends StatelessWidget {
   static const String routeName = '/purchase';

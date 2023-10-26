@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:e_shop_flutter/domain/entities/purchase_view.dart';
 import 'package:e_shop_flutter/domain/usecases/delete_purchase.usecase.dart';
 import 'package:e_shop_flutter/presentation/cubits/delete_purchase_cubit/delete_purchase.cubit.dart';
-import 'package:e_shop_flutter/presentation/cubits/delete_purchase_cubit/delete_purchase.state.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 

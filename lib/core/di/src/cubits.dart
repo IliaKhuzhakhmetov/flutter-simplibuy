@@ -1,6 +1,12 @@
 part of '../di.dart';
 
 void _registerCubits() {
+  locator.registerFactory(() => ItemsCubit());
+
+  locator.registerFactory(() => PickDateCubit());
+
+  locator.registerFactory(() => ValidationCubit());
+
   locator.registerFactory(
     () => DeletePurchaseCubit(deletePurchaseUsecase: locator()),
   );

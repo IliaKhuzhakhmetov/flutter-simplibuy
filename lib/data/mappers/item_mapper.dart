@@ -7,7 +7,7 @@ class ItemMapper extends Mapper<ItemView, ItemTableData> {
   ItemView fromModel(ItemTableData model) => ItemView(
         id: model.id ?? -1,
         name: model.name,
-        count: model.count,
+        quantity: model.quantity,
         price: model.price,
         purchaseId: model.purchaseId ?? -1,
       );
@@ -16,7 +16,7 @@ class ItemMapper extends Mapper<ItemView, ItemTableData> {
   ItemTableData toModel(ItemView entity) => ItemTableData(
         id: entity.id,
         name: entity.name,
-        count: entity.count,
+        quantity: entity.quantity,
         price: entity.price,
         purchaseId: entity.purchaseId,
       );

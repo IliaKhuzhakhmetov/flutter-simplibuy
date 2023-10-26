@@ -3,7 +3,7 @@ import 'dart:convert';
 class ItemView {
   final int id;
   final String name;
-  int count;
+  double quantity;
   final double price;
   final int purchaseId;
 
@@ -12,7 +12,7 @@ class ItemView {
   ItemView({
     required this.id,
     required this.name,
-    required this.count,
+    required this.quantity,
     required this.price,
     required this.purchaseId,
   });
@@ -21,7 +21,7 @@ class ItemView {
     return {
       'id': id,
       'name': name,
-      'count': count,
+      'count': quantity,
       'price': price,
       'purchaseId': purchaseId,
     };
@@ -31,7 +31,7 @@ class ItemView {
     return ItemView(
       id: map['id']?.toInt() ?? 0,
       name: map['name'] ?? '',
-      count: map['count']?.toInt() ?? 0,
+      quantity: map['count']?.toInt() ?? 0,
       price: map['price']?.toDouble() ?? 0.0,
       purchaseId: map['purchaseId']?.toInt() ?? 0,
     );
@@ -45,14 +45,14 @@ class ItemView {
   ItemView copyWith({
     int? id,
     String? name,
-    int? count,
+    double? quantity,
     double? price,
     int? purchaseId,
   }) {
     return ItemView(
       id: id ?? this.id,
       name: name ?? this.name,
-      count: count ?? this.count,
+      quantity: quantity ?? this.quantity,
       price: price ?? this.price,
       purchaseId: purchaseId ?? this.purchaseId,
     );
@@ -60,7 +60,7 @@ class ItemView {
 
   @override
   String toString() {
-    return 'ItemView(id: $id, name: $name, count: $count, price: $price, purchaseId: $purchaseId)';
+    return 'ItemView(id: $id, name: $name, quantity: $quantity, price: $price, purchaseId: $purchaseId)';
   }
 
   @override
@@ -70,7 +70,7 @@ class ItemView {
     return other is ItemView &&
         other.id == id &&
         other.name == name &&
-        other.count == count &&
+        other.quantity == quantity &&
         other.price == price &&
         other.purchaseId == purchaseId;
   }
@@ -79,7 +79,7 @@ class ItemView {
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
-        count.hashCode ^
+        quantity.hashCode ^
         price.hashCode ^
         purchaseId.hashCode;
   }

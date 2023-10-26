@@ -3,6 +3,8 @@ import 'package:e_shop_flutter/domain/usecases/get_purchases.usecase.dart';
 
 import 'get_all_purchases_state.dart';
 
+export 'get_all_purchases_state.dart';
+
 /// `GetAllPurchasesCubit` is responsible for managing the state
 /// related to fetching all purchases.
 ///

@@ -1,4 +1,5 @@
 import 'package:e_shop_flutter/core/utils/pair.dart';
+import 'package:e_shop_flutter/core/validations/text_validations.dart';
 import 'package:flutter/material.dart';
 
 class AddItemDialog extends StatefulWidget {
@@ -32,11 +33,8 @@ class _AddItemDialogState extends State<AddItemDialog> {
                 decoration: const InputDecoration(
                   hintText: 'Enter the name',
                 ),
-                onChanged: (_) {
-                  formKey.currentState?.validate();
-                  setState(() {});
-                },
-                validator: _nameValidator,
+                onChanged: _onChanged,
+                validator: TextValidations.isNotEmpty,
               ),
               const SizedBox(height: 8),
               TextFormField(
@@ -47,11 +45,8 @@ class _AddItemDialogState extends State<AddItemDialog> {
                 decoration: const InputDecoration(
                   hintText: 'Enter the price',
                 ),
-                validator: _priceValidator,
-                onChanged: (_) {
-                  formKey.currentState?.validate();
-                  setState(() {});
-                },
+                validator: TextValidations.isCorrectPrice,
+                onChanged: _onChanged,
               )
             ],
           )),
@@ -64,22 +59,16 @@ class _AddItemDialogState extends State<AddItemDialog> {
     );
   }
 
-  String? _nameValidator(value) {
-    return value?.isNotEmpty == true ? null : 'Please, enter the item name';
-  }
-
-  String? _priceValidator(value) {
-    return value?.isNotEmpty == true &&
-            double.tryParse(value?.replaceAll(',', '.') ?? '') != null
-        ? null
-        : 'Please, enter the item price';
+  void _onChanged(_) {
+    formKey.currentState?.validate();
+    setState(() {});
   }
 
   void _addPressed(BuildContext context) => Navigator.pop(
         context,
         Pair<String, String>(
           nameController.text,
-          nameController.text,
+          priceController.text,
         ),
       );
 }

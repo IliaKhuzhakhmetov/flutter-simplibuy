@@ -1,6 +1,6 @@
 import 'package:e_shop_flutter/core/res/assets/primary.icons.dart';
 import 'package:e_shop_flutter/core/res/constants/primary.paddings.dart';
-import 'package:e_shop_flutter/presentation/application/logic/application.cubit.dart';
+import 'package:e_shop_flutter/presentation/cubits/application_cubit/application.cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

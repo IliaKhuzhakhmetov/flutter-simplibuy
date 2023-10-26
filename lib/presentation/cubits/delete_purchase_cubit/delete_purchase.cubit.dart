@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'delete_purchase.state.dart';
 
+export 'delete_purchase.state.dart';
+
 /// `DeletePurchaseCubit` is responsible for managing the state of deleting a purchase.
 class DeletePurchaseCubit extends Cubit<DeletePurchaseState> {
   /// Use case for deleting a purchase.

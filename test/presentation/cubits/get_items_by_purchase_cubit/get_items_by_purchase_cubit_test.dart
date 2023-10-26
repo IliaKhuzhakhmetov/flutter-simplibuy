@@ -3,7 +3,6 @@ import 'package:e_shop_flutter/domain/entities/item_view.dart';
 import 'package:e_shop_flutter/domain/entities/purchase_view.dart';
 import 'package:e_shop_flutter/domain/repositories/items.repository.dart';
 import 'package:e_shop_flutter/presentation/cubits/get_items_by_purchase_cubit/get_Items_by_purchase.cubit.dart';
-import 'package:e_shop_flutter/presentation/cubits/get_items_by_purchase_cubit/get_items_by_purchase.state.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 

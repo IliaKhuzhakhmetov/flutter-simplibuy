@@ -23,7 +23,7 @@ class AddNewPurchaseUseCase {
       PurchaseView(
         id: -1,
         name: purchaseName,
-        sum: items.map((e) => e.price * e.count).toList().sum(),
+        sum: items.map((e) => e.price * e.quantity).toList().sum(),
         date: date,
       ),
     );

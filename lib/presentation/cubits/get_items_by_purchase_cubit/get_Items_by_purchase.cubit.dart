@@ -4,6 +4,8 @@ import 'package:e_shop_flutter/domain/repositories/items.repository.dart';
 
 import 'get_items_by_purchase.state.dart';
 
+export 'get_items_by_purchase.state.dart';
+
 /// [GetItemsByPurchaseCubit] is responsible for fetching items associated with a specific purchase.
 ///
 /// This Cubit manages states related to the process of retrieving items

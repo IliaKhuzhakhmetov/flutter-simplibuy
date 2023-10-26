@@ -11,7 +11,7 @@ class ItemListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       trailing: Text(
-        '${item.count}',
+        '${item.quantity}',
         style: context.titleLarge,
       ),
       title: Text(
