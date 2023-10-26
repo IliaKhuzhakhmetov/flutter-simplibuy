@@ -1,30 +1,38 @@
 part of '../di.dart';
 
 void _registerCubits() {
-  locator.registerFactory(() => AddItemDialogCubit());
+  locator.registerFactory(() => ItemsCubit());
 
-  locator.registerLazySingleton(
+  locator.registerFactory(() => PickDateCubit());
+
+  locator.registerFactory(() => ValidationCubit());
+
+  locator.registerFactory(
+    () => DeletePurchaseCubit(deletePurchaseUsecase: locator()),
+  );
+
+  locator.registerFactory(
     () => ApplicationCubit(
-      changeAppThemeBrighnessUseCase: locator.get(),
-      getSavedBrightnessUseCase: locator.get(),
+      changeAppThemeBrightnessUseCase: locator(),
+      getSavedBrightnessUseCase: locator(),
     ),
   );
 
   // PurchaseCubit
-  locator.registerFactory(() => PurchaseCubit(itemsRepository: locator.get()));
+  locator.registerFactory(
+      () => GetItemsByPurchaseCubit(itemsRepository: locator()));
 
   // PurchasesCubit
   locator.registerFactory(
-    () => PurchasesCubit(
-      deletePurchaseUsecase: locator.get(),
-      getPurchasesUsecase: locator.get(),
+    () => GetAllPurchasesCubit(
+      getPurchasesUsecase: locator(),
     ),
   );
 
   // AddPurchaseCubit
   locator.registerFactory(
     () => AddPurchaseCubit(
-      addNewPurchaseUseCase: locator.get(),
+      addNewPurchaseUseCase: locator(),
     ),
   );
 }

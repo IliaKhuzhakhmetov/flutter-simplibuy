@@ -1,20 +1,20 @@
 import 'dart:convert';
 
+import 'package:e_shop_flutter/core/utils/list_extensions.dart';
 import 'package:e_shop_flutter/core/utils/string_extensions.dart';
-import 'package:e_shop_flutter/data/services/local_database/database.dart';
+import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
-extension PurchaseDataExtensions on PurchaseData {
-  PurchaseView mapToPurchaseView() => PurchaseView(
-      id: id ?? -1, name: name, sum: sum, date: date ?? DateTime.now());
+extension PurchaseListExtension on List<PurchaseView> {
+  String getSumByDate(String date) =>
+      where((element) => element.stringDate == date)
+          .map((e) => e.sum)
+          .toList()
+          .sum()
+          .toStringAsFixed(2);
 }
 
-extension PurchaseViewExtensions on PurchaseView {
-  PurchaseData mapToPurchaseData() =>
-      PurchaseData(id: id, name: name, sum: sum, date: date);
-}
-
-class PurchaseView {
+class PurchaseView extends Equatable {
   final int id;
   final String name;
   final double sum;
@@ -73,18 +73,5 @@ class PurchaseView {
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is PurchaseView &&
-        other.id == id &&
-        other.name == name &&
-        other.sum == sum &&
-        other.date == date;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^ name.hashCode ^ sum.hashCode ^ date.hashCode;
-  }
+  List<Object?> get props => [id, name, sum, date];
 }

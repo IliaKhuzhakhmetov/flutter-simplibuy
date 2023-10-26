@@ -47,7 +47,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
         
-      - name: Generate Freezed classes
+      - name: Generate classes
         run: flutter pub run build_runner build --delete-conflicting-outputs
         
       - name: Analyze project source

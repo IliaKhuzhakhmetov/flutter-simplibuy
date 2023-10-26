@@ -1,6 +1,6 @@
 part of '../di.dart';
 
-void registerDatasources() {
+void _registerDatasources() {
   locator.registerLazySingleton<LocalItemsDatasource>(
     () => LocalItemsDatasourceImpl(
       itemDao: locator.get<LocalDatabase>().itemsDao,

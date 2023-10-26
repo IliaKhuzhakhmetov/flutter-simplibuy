@@ -2,8 +2,8 @@ import 'package:e_shop_flutter/data/services/local_database/dao/items_dao/items_
 import 'package:e_shop_flutter/data/services/local_database/database.dart';
 
 abstract class LocalItemsDatasource {
-  Future addItems(List<ItemData> itemsData);
-  Future<List<ItemData>> getItemsBypurchaseId(int purchaseId);
+  Future addItems(List<ItemTableData> itemsData);
+  Future<List<ItemTableData>> getItemsPurchaseId(int purchaseId);
 }
 
 // TODO: Refactor ItemData to ItemView
@@ -15,10 +15,10 @@ class LocalItemsDatasourceImpl extends LocalItemsDatasource {
   }) : _dao = itemDao;
 
   @override
-  Future<void> addItems(List<ItemData> itemsData) =>
+  Future<void> addItems(List<ItemTableData> itemsData) =>
       _dao.insertValues(itemsData);
 
   @override
-  Future<List<ItemData>> getItemsBypurchaseId(int purchaseId) =>
+  Future<List<ItemTableData>> getItemsPurchaseId(int purchaseId) =>
       _dao.getItemsByPurchaseId(purchaseId);
 }

@@ -8,11 +8,12 @@ part 'items_dao.g.dart';
 class ItemsDao extends DatabaseAccessor<LocalDatabase> with _$ItemsDaoMixin {
   ItemsDao(LocalDatabase db) : super(db);
 
-  Future<int> insert(ItemData value) => into(item).insert(value);
+  Future<int> insert(ItemTableData value) => into(itemTable).insert(value);
 
-  Future<void> insertValues(List<ItemData> values) =>
-      batch((batch) => batch.insertAll(item, values));
+  Future<void> insertValues(List<ItemTableData> values) =>
+      batch((batch) => batch.insertAll(itemTable, values));
 
-  Future<List<ItemData>> getItemsByPurchaseId(int purchaseId) =>
-      (select(item)..where((tbl) => tbl.purchaseId.equals(purchaseId))).get();
+  Future<List<ItemTableData>> getItemsByPurchaseId(int purchaseId) =>
+      (select(itemTable)..where((tbl) => tbl.purchaseId.equals(purchaseId)))
+          .get();
 }

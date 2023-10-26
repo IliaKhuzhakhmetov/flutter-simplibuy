@@ -34,11 +34,14 @@ class LocalDatabase extends _$LocalDatabase {
         [
           WritePropagation(
             on: TableUpdateQuery.onTable(
-              purchase,
+              purchaseTable,
               limitUpdateKind: UpdateKind.delete,
             ),
             result: [
-              TableUpdate.onTable(item, kind: UpdateKind.delete),
+              TableUpdate.onTable(
+                itemTable,
+                kind: UpdateKind.delete,
+              ),
             ],
           )
         ],
